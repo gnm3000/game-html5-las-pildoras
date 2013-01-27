@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <base href="http://pildorasgame.herokuapp.com/">
+    <!-- Le styles -->
+    <link href="//twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="//twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="//twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="//twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="//twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="//twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="//twitter.github.com/bootstrap/assets/ico/favicon.png">
+  
+  <link href='http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister' rel='stylesheet' type='text/css'>
+  <link href='/estilo.css' rel='stylesheet' type='text/css'>
+  
+  </head>
+
+  <body>
+<div id='fb-root'></div>
+    <script src='https://connect.facebook.net/es_ES/all.js'></script>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Project name</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <h1>Salva el corazon de tu amigo!</h1>
+      <div class="row">
+          <div class="span6">
+              <img src="http://graph.facebook.com/{{me.id}}/picture"> {{me.name}}
+              
+          </div>
+          <div class="span6">
+              <img src="http://graph.facebook.com/{{friend.id}}/picture"> 
+              {{friend.name}}</div>
+          
+      </div>
+      <div class="row">
+          <div class="span6">
+              
+              <canvas id="canvas"></canvas>
+             
+              
+          </div>
+          <div class="span6">
+              <div id="frame" style="height: 200px;">
+    
+    <h2>Vos sos la única esperanza para salvar a {{friend.name}}!</h2>
+    <p>mantené su corazón latiendo presionando <b>L</b> al ritmo del latido. ¡Cuidado! si no vas a tiempo con su corazón morirás.</p>
+    <p>Esquiva los virus con la tecla <b>X</b>. No los toques o morirás. ¡¡¡Son muy peligrosos!!!</p>
+    <p>Si te gusta, podés unirte a nosotros para extender este juego, ya que ha sido desarrollado en 48 horas dentro del evento Game Jam Cordoba 2013.</p>
+    
+    
+
+</div>
+                            
+          </div>
+      </div>
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
+    <script src="//twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+    <script type="text/javascript" src="jquery.fancybox.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery.fancybox.css" media="screen" />
+	
+	<script type="text/javascript" src="/lib/impact/impact.js"></script>
+	<script type="text/javascript" src="/lib/game/main.js"></script>
+        
+<!-- Add fancyBox main JS and CSS files -->
+<script>
+     $(document).ready(function(){
+         
+        
+         
+     });
+     FB.init({appId: "226952067441858", status: true, cookie: true});
+                  publicar_fb = function(){
+                      
+                      FB.login(function(response) {
+                           if (!response || response.error) {
+                                alert('Por favor acepte los permisos');
+                                } else {
+                                     // calling the API ...
+                                                    var obj = {
+                                                    method: 'feed',
+                                                    redirect_uri: 'https://apps.facebook.com/las-pildoras/',
+                                                    message: "holaa",
+                                                    link: 'https://apps.facebook.com/las-pildoras/',
+                                                    picture: 'https://pildorasgame.herokuapp.com/media/pildoras.png',
+                                                    name: 'Salvaste a tu amigo {{friend.name}}',
+//                                                    caption: 'Reference Documentation',
+                                                    description: 'Este juego ha sido desarrollado en 48 horas en la Game Jam Cordoba 2013!.'
+                                                    };
+
+                                                    function callback(response) {
+                                                    message =  "Post ID: " + response['post_id'];
+                                                    alert("muchas gracias por jugar!");
+                                                    console.log(message);
+                                                }
+
+                                                    FB.ui(obj, callback);
+                                }
+                          
+                      }, {scope: 'publish_stream'});
+                      //e.preventDefault();
+                  };
+                  
+              </script>
+  </body>
+</html>
